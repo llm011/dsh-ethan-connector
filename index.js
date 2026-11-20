@@ -1,4 +1,5 @@
 import { runEthanAcpTask } from './acp-client.js'
+import { isEthanHttpAvailable, runEthanHttpTask } from './http-client.js'
 
 const STEP_STATUS_ICON = {
   completed: '[ok]',
@@ -143,6 +144,28 @@ export function createEthanRunTool(config = {}) {
           : typeof config.timeoutMs === 'number' && config.timeoutMs > 0
             ? config.timeoutMs
             : 600_000
+      const mode = typeof config.transport === 'string' ? config.transport : 'auto'
+      const useHttp =
+        mode === 'http'
+          ? true
+          : mode === 'acp'
+            ? false
+            : await isEthanHttpAvailable(config)
+
+      if (useHttp) {
+        return runEthanHttpTask({
+          task: a.task,
+          sessionId: a.session_id,
+          cwd: a.cwd,
+          signal: exec?.signal,
+          ethanUrl: config.ethanUrl,
+          authToken: config.authToken,
+          ethanConfigPath: config.ethanConfigPath,
+          autoApprove: config.autoApprove !== false,
+          timeoutMs,
+        })
+      }
+
       return runEthanAcpTask({
         task: a.task,
         sessionId: a.session_id,

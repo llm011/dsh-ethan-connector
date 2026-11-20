@@ -277,14 +277,14 @@ export async function runEthanAcpTask({
   try {
     await request('initialize', { protocolVersion: 1 })
     if (activeSessionId) {
-      await request('session/load', { sessionId: activeSessionId, cwd: effectiveCwd })
+      await request('session/load', { sessionId: activeSessionId, cwd: effectiveCwd, mcpServers: [] })
       // session/load replays history through session/update; drop replayed chunks before sending prompt
       replyChunks.length = 0
       stepsById.clear()
       stepOrder.length = 0
       thoughtChars = 0
     } else {
-      const created = await request('session/new', { cwd: effectiveCwd })
+      const created = await request('session/new', { cwd: effectiveCwd, mcpServers: [] })
       activeSessionId = String(created?.sessionId || '')
       if (!activeSessionId) {
         throw new Error('ethan acp did not return a sessionId')
