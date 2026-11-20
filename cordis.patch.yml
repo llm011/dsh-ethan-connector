@@ -1,0 +1,4 @@
+- insert:
+    - id: ethan-connector
+      name: 'dsh-ethan-connector'
+      config: {}

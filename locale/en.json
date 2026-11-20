@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Ethan connector",
+    "description": "Injects x-session-id on pi-ai model requests for proxy session rotation, and adds the ethan_run tool to delegate tasks to Ethan Agent over ACP with structured step summaries for TUI and Web."
+  }
+}

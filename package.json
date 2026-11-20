@@ -1,0 +1,28 @@
+{
+  "name": "dsh-ethan-connector",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness connector for Ethan Agent: injects x-session-id headers for pi-ai routes and delegates tasks via ACP with TUI-compatible step summaries.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "acp-client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

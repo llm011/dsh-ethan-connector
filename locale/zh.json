@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Ethan 连接器",
+    "description": "为 pi-ai 模型请求自动注入 x-session-id 以便网关按会话轮转账号，并注册 ethan_run 工具通过 ACP 调用 Ethan Agent，输出兼容 TUI 与 Web 的步骤摘要卡片。"
+  }
+}
